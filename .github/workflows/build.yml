@@ -6,31 +6,52 @@ jobs:
     steps:
       - name: Checkout Sources
         uses: actions/checkout@v4
+
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: 17
+
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
+
       - name: Make Gradle Executable
         run: chmod +x ./gradlew
+
       - name: Build Client Events
         run: ./gradlew build
+
       - name: Extract Version
         id: extract_ver
         run: |
-          mod_version=$(grep "^mod_version=" gradle.properties)
+          mod_version=$(grep -q "^mod_version=" gradle.properties)
           echo "$mod_version" >> $GITHUB_OUTPUT
+
       - name: Print Extracted Version
         run: echo "Uploading version ${{ steps.extract_ver.outputs.mod_version }}"
+
       - name: Get Commit Message
         id: latest_commit_msg
-        run: echo "commitmsg=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+        run: |
+          commitMsg=$(git rev-parse HEAD)
+          echo $commitMsg
+          shouldRelease=$(echo "$commitMsg" | grep -q "release" && echo "true" || echo "false")
+          echo "commitMsg=$commitMsg" >> $GITHUB_OUTPUT
+          echo "shouldRelease=$shouldRelease" >> $GITHUB_OUTPUT 
+
       - name: Create Release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --notes ${{ steps.latest_commit_msg.outputs.commitmsg }} "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
+        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --notes ${{ steps.latest_commit_msg.outputs.commitMsg }} "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
+
+      - name: Upload Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        if: steps.latest_commit_msg.outputs.shouldRelease == "true"
+        run: gh release edit "${{ steps.extract_ver.outputs.mod_version }}" --draft false
+
       - name: Cleanup
         run: ./gradlew clean
