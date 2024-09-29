@@ -39,6 +39,7 @@ jobs:
             echo "shouldRelease=true" >> $GITHUB_OUTPUT
           else
             echo "shouldRelease=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create Release
         env:
