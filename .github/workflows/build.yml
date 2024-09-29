@@ -1,0 +1,29 @@
+name: Build JAR
+on: [ push ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v4
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+      - name: Build Client Events
+        run: ./gradlew build
+      - name: Extract Version
+        id: extract_ver
+        run: |
+          mod_version=$(grep "^mod_version=" gradle.properties)
+          echo "$mod_version" >> $GITHUB_OUTPUT
+      - name: Print Extracted Version
+        run: echo "Uploading version ${{ steps.extract_ver.outputs.mod_version }}"
+      - name: Get Commit Message
+        id: latest_commit_msg
+        run: echo "commitmsg=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }} --notes ${{ steps.latest_commit_msg.outputs.commitmsg }} "build/libs/clientevents-${{ steps.extract_ver.output.mod_version }}.jar"
+      - name: Cleanup
+        run: ./gradlew clean
