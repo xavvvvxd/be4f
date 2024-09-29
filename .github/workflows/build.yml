@@ -34,9 +34,11 @@ jobs:
       - name: Get Commit Message
         id: latest_commit_msg
         run: |
-          commitMsg=$(git rev-parse HEAD)
+          commitHash=$(git rev-parse HEAD)
+          commitMsg=$(git log -1 --pretty=%B)
           echo $commitMsg
           shouldRelease=$(echo "$commitMsg" | grep "release" && echo "true" || echo "false")
+          echo "commitHash=$commitHash" >> $GITHUB_OUTPUT
           echo "commitMsg=$commitMsg" >> $GITHUB_OUTPUT
           echo "shouldRelease=$shouldRelease" >> $GITHUB_OUTPUT 
 
@@ -44,7 +46,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --notes ${{ steps.latest_commit_msg.outputs.commitMsg }} "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
+        run: |
+          releaseNotes=$(echo "${{ steps.latest_commit_msg.outputs.commitMsg }}\nCommit ${{ steps.latest_commit_msg.outputs.commitHash }}")
+          gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --notes ${{ steps.latest_commit_msg.outputs.commitMsg }} "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
 
       - name: Upload Release
         env:
