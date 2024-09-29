@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
-	"id": "sanitycheck",
+	"id": "clientevents",
 	"version": "${version}",
-	"name": "SanityCheck",
-	"description": "Fabric mod sanity check",
+	"name": "Client Events",
+	"description": "Implements more client-side events for Fabric.",
 	"authors": [
 		"xavvvv"
 	],
@@ -15,14 +15,14 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"lol.xavvvv.sanitycheck.SanityCheck"
+			"lol.xavvvv.clientevents.ClientEventsMod"
 		],
 		"client": [
-			"lol.xavvvv.sanitycheck.SanityCheckClient"
+			"lol.xavvvv.clientevents.ClientEventsClient"
 		]
 	},
 	"mixins": [
-		"sanitycheck.mixins.json"
+		"clientevents.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.3",

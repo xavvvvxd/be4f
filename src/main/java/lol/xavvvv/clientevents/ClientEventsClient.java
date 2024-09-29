@@ -1,8 +1,8 @@
-package lol.xavvvv.sanitycheck;
+package lol.xavvvv.clientevents;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class SanityCheckClient implements ClientModInitializer {
+public class ClientEventsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
