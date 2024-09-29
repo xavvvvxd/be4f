@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout sources
+      - name: Checkout Sources
         uses: actions/checkout@v4
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -31,6 +31,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }} --notes ${{ steps.latest_commit_msg.outputs.commitmsg }} "build/libs/clientevents-${{ steps.extract_ver.output.mod_version }}.jar"
+        run: gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --notes ${{ steps.latest_commit_msg.outputs.commitmsg }} "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
       - name: Cleanup
         run: ./gradlew clean
