@@ -6,7 +6,6 @@ import lol.xavvvv.clientevents.events.TickEvent;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -29,7 +28,7 @@ public abstract class ClientPlayerEntityMixin extends LivingEntity {
             if (!dontFireDeathEvent) {
                 dontFireDeathEvent = true;
 
-                PlayerDeathEvent event = new PlayerDeathEvent(this.getRecentDamageSource());
+                PlayerDeathEvent event = new PlayerDeathEvent(this.getRecentDamageSource()); // getRecentDamageSource is nullable...
                 EventManager.fire(event);
             }
         } else {
