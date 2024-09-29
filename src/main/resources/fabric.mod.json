@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "sanitycheck",
+	"version": "${version}",
+	"name": "SanityCheck",
+	"description": "Fabric mod sanity check",
+	"authors": [
+		"xavvvv"
+	],
+	"contact": {
+		"homepage": "https://xavvvv.lol",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"lol.xavvvv.sanitycheck.SanityCheck"
+		],
+		"client": [
+			"lol.xavvvv.sanitycheck.SanityCheckClient"
+		]
+	},
+	"mixins": [
+		"sanitycheck.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.3",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*"
+	}
+}
