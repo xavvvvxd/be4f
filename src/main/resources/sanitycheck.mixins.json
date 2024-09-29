@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "lol.xavvvv.sanitycheck.mixin",
+	"compatibilityLevel": "JAVA_17",
+	"mixins": [
+      "SanityCheckMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}
