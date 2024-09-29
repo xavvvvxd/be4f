@@ -31,13 +31,14 @@ jobs:
       - name: Print Extracted Version
         run: echo "Uploading version ${{ steps.extract_ver.outputs.mod_version }}"
 
-      - name: Get Commit Message
+      - name: Check If Should Release
         id: latest_commit_msg
         run: |
           commitMsg=$(git log -1 --pretty=%B)
-          shouldRelease=$(echo "$commitMsg" | grep "release" && echo 'true' || echo 'false')
-          echo "commitMsg=$commitMsg" >> $GITHUB_OUTPUT
-          echo "shouldRelease=$shouldRelease" >> $GITHUB_OUTPUT 
+          if echo "$commitMsg" | grep -q -i "release:"; then
+            echo "shouldRelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "shouldRelease=false" >> $GITHUB_OUTPUT
 
       - name: Create Release
         env:
