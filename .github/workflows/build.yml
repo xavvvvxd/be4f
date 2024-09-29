@@ -50,7 +50,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-        if: steps.latest_commit_msg.outputs.shouldRelease == "true"
+        if: steps.latest_commit_msg.outputs.shouldRelease == 'true'
         run: gh release edit "${{ steps.extract_ver.outputs.mod_version }}" --draft false
 
       - name: Cleanup
