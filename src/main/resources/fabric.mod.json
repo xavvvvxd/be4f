@@ -1,28 +1,28 @@
 {
 	"schemaVersion": 1,
-	"id": "clientevents",
+	"id": "betterevents",
 	"version": "${version}",
-	"name": "Client Events",
-	"description": "Implements more client-side events for Fabric.",
+	"name": "BE4F",
+	"description": "Custom event system for Fabric",
 	"authors": [
 		"xavvvv"
 	],
 	"contact": {
 		"homepage": "https://xavvvv.lol",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/xavvvvxd/be4f"
 	},
 	"license": "MIT",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"lol.xavvvv.clientevents.ClientEventsMod"
+			"lol.xavvvv.betterevents.BetterEventsMod"
 		],
 		"client": [
-			"lol.xavvvv.clientevents.ClientEventsClient"
+			"lol.xavvvv.betterevents.BetterEventsClient"
 		]
 	},
 	"mixins": [
-		"clientevents.mixins.json"
+		"betterevents.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.16.3",

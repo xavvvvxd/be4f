@@ -1,7 +1,7 @@
-package lol.xavvvv.clientevents;
+package lol.xavvvv.betterevents;
 
-import lol.xavvvv.clientevents.event.Event;
-import lol.xavvvv.clientevents.event.Listener;
+import lol.xavvvv.betterevents.event.Event;
+import lol.xavvvv.betterevents.event.Listener;
 
 import java.util.*;
 
