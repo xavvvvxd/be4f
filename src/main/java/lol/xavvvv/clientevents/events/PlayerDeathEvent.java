@@ -7,7 +7,7 @@ import net.minecraft.entity.damage.DamageSource;
 import java.util.ArrayList;
 
 public class PlayerDeathEvent extends Event<PlayerDeathListener> {
-    private DamageSource recentDamageSource;
+    private final DamageSource recentDamageSource;
 
     public PlayerDeathEvent(DamageSource recentDamageSource) {
         this.recentDamageSource = recentDamageSource;
