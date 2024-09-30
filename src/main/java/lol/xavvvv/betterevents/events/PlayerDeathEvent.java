@@ -1,7 +1,7 @@
-package lol.xavvvv.clientevents.events;
+package lol.xavvvv.betterevents.events;
 
-import lol.xavvvv.clientevents.event.Event;
-import lol.xavvvv.clientevents.listeners.PlayerDeathListener;
+import lol.xavvvv.betterevents.event.Event;
+import lol.xavvvv.betterevents.listeners.PlayerDeathListener;
 import net.minecraft.entity.damage.DamageSource;
 
 import java.util.ArrayList;

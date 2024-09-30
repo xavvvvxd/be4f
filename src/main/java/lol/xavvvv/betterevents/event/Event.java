@@ -1,4 +1,4 @@
-package lol.xavvvv.clientevents.event;
+package lol.xavvvv.betterevents.event;
 
 import java.util.ArrayList;
 

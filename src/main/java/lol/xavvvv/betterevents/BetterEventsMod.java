@@ -1,11 +1,11 @@
-package lol.xavvvv.clientevents;
+package lol.xavvvv.betterevents;
 
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ClientEventsMod implements ModInitializer {
+public class BetterEventsMod implements ModInitializer {
 	public static final String MOD_ID = "clientevents";
 
 	// This logger is used to write text to the console and the log file.

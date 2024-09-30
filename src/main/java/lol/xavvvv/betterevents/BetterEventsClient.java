@@ -1,8 +1,8 @@
-package lol.xavvvv.clientevents;
+package lol.xavvvv.betterevents;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public class ClientEventsClient implements ClientModInitializer {
+public class BetterEventsClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {

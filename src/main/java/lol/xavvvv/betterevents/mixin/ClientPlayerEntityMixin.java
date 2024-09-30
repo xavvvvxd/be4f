@@ -1,8 +1,8 @@
-package lol.xavvvv.clientevents.mixin;
+package lol.xavvvv.betterevents.mixin;
 
-import lol.xavvvv.clientevents.EventManager;
-import lol.xavvvv.clientevents.events.PlayerDeathEvent;
-import lol.xavvvv.clientevents.events.TickEvent;
+import lol.xavvvv.betterevents.EventManager;
+import lol.xavvvv.betterevents.events.PlayerDeathEvent;
+import lol.xavvvv.betterevents.events.TickEvent;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

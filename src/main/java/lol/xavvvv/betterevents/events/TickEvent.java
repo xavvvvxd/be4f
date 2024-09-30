@@ -1,7 +1,7 @@
-package lol.xavvvv.clientevents.events;
+package lol.xavvvv.betterevents.events;
 
-import lol.xavvvv.clientevents.event.Event;
-import lol.xavvvv.clientevents.listeners.TickListener;
+import lol.xavvvv.betterevents.event.Event;
+import lol.xavvvv.betterevents.listeners.TickListener;
 
 import java.util.ArrayList;
 

@@ -46,7 +46,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
         run: |
-          gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "Client Events ${{ steps.extract_ver.outputs.mod_version }}" --generate-notes "build/libs/clientevents-${{ steps.extract_ver.outputs.mod_version }}.jar"
+          gh release create --draft "${{ steps.extract_ver.outputs.mod_version }}" --title "BE4F ${{ steps.extract_ver.outputs.mod_version }}" --generate-notes "build/libs/be4f-${{ steps.extract_ver.outputs.mod_version }}.jar"
 
       - name: Upload Release
         env:
